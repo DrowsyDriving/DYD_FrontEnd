@@ -1,9 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header";
 import {ReactComponent as SideColor} from "../assets/SideBackgroundColor.svg"
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const [inputData, setInputData] = useState({
+    area: "",
+    areaCode: "",
+  });
+
+  const {area, areaCode} = inputData;
+
+  const inputChange = (e) => {
+    const {name, value} = e.target;
+    setInputData({
+      ...inputData,
+      [name] : value,
+    });
+  };
+
+  const LoginClick = async () => {
+    try {
+      const response = await axios.post(
+        `drowsydriving.site:8080`,
+        {
+          area,
+          areaCode,
+        }
+      );
+      navigate("/main");
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
   return (
     <>
       <Header />
@@ -12,8 +44,20 @@ export default function Login() {
           <SideColor />
           <InputBox>
             <Title>로그인</Title>
-            <Input type="text" placeholder="지역 코드를 입력하세요"/>
-            <Input type="password" placeholder="비밀번호를 입력하세요"/>
+            <Input 
+              name="area" 
+              type="text" 
+              placeholder="지역 코드를 입력하세요"
+              onChange={(e) => inputChange(e)}
+              value={area}
+            />
+            <Input 
+              name="areaCode"
+              type="password" 
+              placeholder="비밀번호를 입력하세요"
+              onChange={(e) => inputChange(e)}
+              value={areaCode}
+              />
             <Btn>로그인</Btn>
             <Find>지정 번호 혹은 비밀번호를 잊으셨다면 관리자에게 물어보세요</Find>
           </InputBox>
@@ -27,7 +71,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  margin: 60px 0 0 0;
+  margin: 20px 0 0 0;
   justify-content: center;
 `
 
