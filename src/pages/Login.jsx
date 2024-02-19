@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from "../components/header";
 import {ReactComponent as SideColor} from "../assets/SideBackgroundColor.svg"
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -58,7 +59,7 @@ export default function Login() {
               onChange={(e) => inputChange(e)}
               value={areaCode}
               />
-            <Btn>로그인</Btn>
+            <Btn onClick={LoginClick}>로그인</Btn>
             <Find>지정 번호 혹은 비밀번호를 잊으셨다면 관리자에게 물어보세요</Find>
           </InputBox>
         </LoginBox>
