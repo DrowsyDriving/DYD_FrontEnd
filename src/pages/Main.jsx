@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header"
-import style from "style-component";
+import MainModal from "../components/MainModal";
 
 
 export default function Main() {
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const showModal = () => {
+    setIsOpen(true);
+  };
   return (
     <>
       <Header />
@@ -12,7 +18,8 @@ export default function Main() {
         <CameraImg src="img/Camera.png" />
         <Alarm>
           <Title>안녕하세요 OOO님!</Title>
-          <Warning>
+          <Warning onClick={showModal}>
+            {isOpen && (<MainModal setIsOpen={setIsOpen} />)}
               <BellImg src="img/Bell.png" alt="종이미지" />
               <Sorting>
                 <WarningTitle>1차 경고</WarningTitle>
@@ -23,7 +30,7 @@ export default function Main() {
           <Warning>
               <BellImg src="img/Bell.png" alt="종이미지" />
               <Sorting>
-                <WarningTitle>2차 경고</WarningTitle>
+                <WarningTitle >2차 경고</WarningTitle>
                 <NumberPlate>998가 2939</NumberPlate>
               </Sorting>
           </Warning>
@@ -43,7 +50,6 @@ export default function Main() {
                 <NumberPlate>38나 4932</NumberPlate>
               </Sorting>
           </Warning>
-
         </Alarm>
       </Container>
     </> 
@@ -52,7 +58,7 @@ export default function Main() {
 
 const Container = styled.div`
   width: 100%;
-  height: 860px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;  
