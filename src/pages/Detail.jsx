@@ -21,7 +21,7 @@ export default function Detail () {
 
 const Container = styled.div`
   width: 100%;
-  height: 860px;
+  height: 760px;
   display: flex;
   justify-content: center;
   align-items: center;

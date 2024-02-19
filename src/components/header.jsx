@@ -1,49 +1,60 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import {ReactComponent as Logo} from "../assets/Logo.svg"
+import { ReactComponent as Logo } from "../assets/Logo.svg";
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
-
   return (
     <>
       <HeaderBox>
         <Logo />
         <BtnBox>
-          <HeaderBtn
-          >HOME</HeaderBtn>
-          <HeaderBtn
-          >LOG OUT</HeaderBtn>
-          <HeaderBtn
-          >INFORMATION</HeaderBtn>
+          <HeaderBtn exact to="/main">
+            HOME
+          </HeaderBtn>
+          <HeaderBtn to="/logout">LOG OUT</HeaderBtn>
+          <HeaderBtn to="/detail">INFORMATION</HeaderBtn>
         </BtnBox>
       </HeaderBox>
     </>
-  )
+  );
 }
 
 const HeaderBox = styled.div`
   width: 100%;
   height: 100px;
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 const BtnBox = styled.div`
-  display:flex;
+  display: flex;
   justify-content: end;
-`
+`;
 
-const HeaderBtn  = styled.button`
-  display:flex;
+const HeaderBtn = styled(NavLink)`
+  display: flex;
   align-items: center;
   margin-left: 42px;
   font-size: 17px;
   background-color: transparent;
   border: none;
+  text-decoration: none;
+  color: black;
 
-  &:active {
-    background-color: #343A40;
+  &:hover {
+    background-color: #343a40;
+    border-radius: 50px;
+    color: white;
+    width: 120px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.active {
+    background-color: #343a40;
     border-radius: 50px;
     color: white;
     width: 120px;
