@@ -2,8 +2,22 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../components/header";
 import {ReactComponent as SideColor} from "../assets/SideBackgroundColor.svg"
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function LogOut() {
+
+  const navigate = useNavigate();
+
+  const handleLogout = async() => {
+    try {
+      await axios.get(`http://drowsydriving.site:8080/users/logout`)
+      navigate("/");
+    } catch (error) {
+      console.error("로그아웃 실패", error);
+    }
+  }
+
   return (
     <>
       <Header />
@@ -13,7 +27,7 @@ export default function LogOut() {
           <TextBox>
             <Title>로그아웃</Title>
             <LogOutText>로그아웃 하시려면 <br />아래 버튼을 눌러주세요</LogOutText>
-            <Btn>로그아웃</Btn>
+            <Btn onClick={handleLogout}>로그아웃</Btn>
           </TextBox>
         </LoginBox>
       </Container>
