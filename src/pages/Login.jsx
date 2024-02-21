@@ -25,7 +25,7 @@ export default function Login() {
   const LoginClick = async () => {
     try {
       const response = await axios.post(
-        `drowsydriving.site:8080`,
+        `http://drowsydriving.site:8080/users/login`,
         {
           area,
           areaCode,
