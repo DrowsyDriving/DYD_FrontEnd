@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import Map from "../components/Map";
+import Map from "./Map";
 
 export default function MainModal ({setIsOpen}) {
 
