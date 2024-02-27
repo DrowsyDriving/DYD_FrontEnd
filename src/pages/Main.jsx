@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/header"
 import MainModal from "../components/MainModal";
@@ -18,6 +18,7 @@ export default function Main() {
         <CameraImg src="img/Camera.png" />
         <Alarm>
           <Title>안녕하세요 OOO님!</Title>
+          
           <Warning onClick={showModal}>
             {isOpen && (<MainModal setIsOpen={setIsOpen} />)}
               <BellImg src="img/Bell.png" alt="종이미지" />

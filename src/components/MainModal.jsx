@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import Map from "./Map";
 
-export default function MainModal ({ setIsOpen }) {
+export default function MainModal ({setIsOpen}) {
 
 
   const closeModal = () => {
@@ -15,7 +16,7 @@ export default function MainModal ({ setIsOpen }) {
         <Sorting>
           <WarningTitle>1차 경고</WarningTitle>
           <NumberPlate>82모 5603</NumberPlate>
-          <div>adf</div>
+          <Map />
         </Sorting>
         <button onClick={closeModal}>닫기</button>
       </Container>
