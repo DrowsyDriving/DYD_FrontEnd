@@ -9,10 +9,10 @@ export default function Login() {
   const navigate = useNavigate();
   const [inputData, setInputData] = useState({
     area: "",
-    areaCode: "",
+    areacode: "",
   });
 
-  const {area, areaCode} = inputData;
+  const {area, areacode} = inputData;
 
   const inputChange = (e) => {
     const {name, value} = e.target;
@@ -28,13 +28,17 @@ export default function Login() {
         `http://drowsydriving.site:8080/users/login`,
         {
           area,
-          areaCode,
+          areacode,
         }
       );
-      navigate("/main");
-      return response;
+
+      if(response.status === 200) {
+        navigate("/main");
+      } else {
+        console.error("Login failed");
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Error during login:", error);
     }
   }
   return (
@@ -53,11 +57,11 @@ export default function Login() {
               value={area}
             />
             <Input 
-              name="areaCode"
+              name="areacode"
               type="password" 
               placeholder="비밀번호를 입력하세요"
               onChange={(e) => inputChange(e)}
-              value={areaCode}
+              value={areacode}
               />
             <Btn onClick={LoginClick}>로그인</Btn>
             <Find>지정 번호 혹은 비밀번호를 잊으셨다면 관리자에게 물어보세요</Find>
@@ -131,4 +135,4 @@ const Btn = styled.button`
 const Find = styled.p`
   font-size: 15px;
   color: rgba(0,0,0,0.4)
-`
+`;
