@@ -1,19 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Logo } from "../assets/Logo.svg";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // useHistory 대신 useNavigate를 import합니다.
 
 export default function Header() {
+  const navigate = useNavigate(); // useNavigate 훅을 사용합니다.
+
+  const handleButtonClick = (path) => {
+    navigate(path); // navigate 함수를 사용하여 경로로 이동합니다.
+  };
+
   return (
     <>
       <HeaderBox>
         <Logo />
         <BtnBox>
-          <HeaderBtn exact to="/main">
+          <HeaderBtn onClick={() => handleButtonClick("/main")}>
             HOME
           </HeaderBtn>
-          <HeaderBtn to="/logout">LOG OUT</HeaderBtn>
-          <HeaderBtn to="/detail">INFORMATION</HeaderBtn>
+          <HeaderBtn onClick={() => handleButtonClick("/logout")}>
+            LOG OUT
+          </HeaderBtn>
+          <HeaderBtn onClick={() => handleButtonClick("/detail")}>
+            INFORMATION
+          </HeaderBtn>
         </BtnBox>
       </HeaderBox>
     </>
@@ -42,13 +52,14 @@ const HeaderBtn = styled(NavLink)`
   border: none;
   text-decoration: none;
   color: black;
+  width: 120px; /* 버튼의 너비를 고정 */
+  height: 45px; /* 버튼의 높이를 고정 */
 
   &:hover {
     background-color: #343a40;
     border-radius: 50px;
     color: white;
-    width: 120px;
-    height: 45px;
+    /* width, height 속성 제거 */
     align-items: center;
     justify-content: center;
   }
@@ -57,8 +68,7 @@ const HeaderBtn = styled(NavLink)`
     background-color: #343a40;
     border-radius: 50px;
     color: white;
-    width: 120px;
-    height: 45px;
+    /* width, height 속성 제거 */
     align-items: center;
     justify-content: center;
   }
