@@ -1,32 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as Logo } from "../assets/Logo.svg";
-import { useNavigate } from "react-router-dom"; // useHistory 대신 useNavigate를 import합니다.
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
-  const navigate = useNavigate(); // useNavigate 훅을 사용합니다.
-
-  const handleButtonClick = (path) => {
-    navigate(path); // navigate 함수를 사용하여 경로로 이동합니다.
-  };
+  const [active, setActive] = useState(null);
 
   return (
-    <>
-      <HeaderBox>
-        <Logo />
-        <BtnBox>
-          <HeaderBtn onClick={() => handleButtonClick("/main")}>
-            HOME
-          </HeaderBtn>
-          <HeaderBtn onClick={() => handleButtonClick("/logout")}>
-            LOG OUT
-          </HeaderBtn>
-          <HeaderBtn onClick={() => handleButtonClick("/detail")}>
-            INFORMATION
-          </HeaderBtn>
-        </BtnBox>
-      </HeaderBox>
-    </>
+    <HeaderBox>
+      <Logo />
+      <BtnBox>
+        <NavLinkStyled to="/main" onClick={() => setActive("/main")} active={active === "/main"}>
+          HOME
+        </NavLinkStyled>
+        <NavLinkStyled to="/logout" onClick={() => setActive("/logout")} active={active === "/logout"}>
+          LOG OUT
+        </NavLinkStyled>
+        <NavLinkStyled to="/detail" onClick={() => setActive("/detail")} active={active === "/detail"}>
+          INFORMATION
+        </NavLinkStyled>
+      </BtnBox>
+    </HeaderBox>
   );
 }
 
@@ -40,10 +34,10 @@ const HeaderBox = styled.div`
 
 const BtnBox = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 `;
 
-const HeaderBtn = styled(NavLink)`
+const NavLinkStyled = styled(NavLink)`
   display: flex;
   align-items: center;
   margin-left: 42px;

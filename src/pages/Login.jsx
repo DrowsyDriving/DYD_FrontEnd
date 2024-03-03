@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Header from "../components/header";
 import {ReactComponent as SideColor} from "../assets/SideBackgroundColor.svg"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -43,7 +42,6 @@ export default function Login() {
   }
   return (
     <>
-      <Header />
       <Container>
         <LoginBox>
           <SideColor />
@@ -76,7 +74,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  margin: 20px 0 0 0;
+  margin: 120px 0 0 0;
   justify-content: center;
 `
 
